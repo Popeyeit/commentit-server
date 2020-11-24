@@ -9,8 +9,8 @@ exports.commentRulesSchema = Joi.object({
 });
 
 exports.rulesForChangeLikes = Joi.object({
-  likes: Joi.number(),
-  dislikes: Joi.number(),
+  likes: Joi.number().required().max(5),
+  counter: Joi.number().required(),
 });
 
 exports.commentIdSchema = Joi.object({

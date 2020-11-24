@@ -47,26 +47,15 @@ exports.changeLikesInComment = async (req, res, next) => {
     const { params } = req;
     const { body } = req;
 
-    if (body.likes) {
-      const updatedComment = await CommentModel.findByIdAndUpdate(
-        params.commentId,
-        { likes: body.likes },
-        { new: true },
-      );
-      if (updatedComment) {
-        res.status(200).send(updatedComment);
-        return;
-      }
-    } else {
-      const updatedComment = await CommentModel.findByIdAndUpdate(
-        params.commentId,
-        { dislikes: body.dislikes },
-        { new: true },
-      );
-      if (updatedComment) {
-        res.status(200).send(updatedComment);
-        return;
-      }
+    const updatedComment = await CommentModel.findByIdAndUpdate(
+      params.commentId,
+      { likes: body.likes, counter: body.counter },
+      { new: true },
+    );
+
+    if (updatedComment) {
+      res.status(200).send(updatedComment);
+      return;
     }
 
     if (!updatedComment) {

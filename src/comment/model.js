@@ -19,7 +19,7 @@ const commentSchema = new Schema({
     required: true,
     default: 0,
   },
-  dislikes: {
+  counter: {
     type: Number,
     required: true,
     default: 0,
