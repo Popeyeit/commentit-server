@@ -24,6 +24,11 @@ const commentSchema = new Schema({
     required: true,
     default: 0,
   },
+  date: {
+    type: Number,
+    required: true,
+    default: Date.now(),
+  },
 });
 
 commentSchema.plugin(mongoosePaginate);

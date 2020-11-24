@@ -19,7 +19,7 @@ exports.getComments = async (req, res, next) => {
     const options = {
       page,
       limit,
-      sort: { likes: popular },
+      sort: { likes: popular, date: -1 },
     };
 
     let result = null;
@@ -33,7 +33,7 @@ exports.getComments = async (req, res, next) => {
     }
 
     if (!page && !limit) {
-      result = await CommentModel.find();
+      result = await CommentModel.find().sort({ date: -1 });
     }
 
     res.status(200).send(result);
