@@ -3,8 +3,8 @@ const CommentModel = require('./model');
 exports.createComment = async (req, res, next) => {
   try {
     const { body } = req;
-
-    const comment = await CommentModel.create(body);
+    const date = Date.now();
+    const comment = await CommentModel.create({ ...body, date });
 
     res.status(201).send(comment);
   } catch (error) {
